@@ -16,6 +16,9 @@ The stock manager, maintaining the stock quantity of a static set of products
 ### distribution/index.html
 The distribution manager, tells us when our orders ship, and when stock is received.
 
+### taskapi/index.html
+The task api, allowing you to send test commands.
+
 * * *
 
 This code, as a whole should not be used in production environments and is solely intended as a 
