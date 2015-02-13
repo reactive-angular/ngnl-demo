@@ -1,0 +1,55 @@
+<html>
+<head>
+
+<!-- AngularJS -->
+<script src="../bower_components/angular/angular.min.js"></script>
+
+<!-- AutobahnJS -->
+<script src="../bower_components/autobahn/autobahn.js"></script>
+
+<!-- AngularWAMP -->
+<script src="../bower_components/angular-wamp/release/angular-wamp.js"></script>
+
+<!-- App -->
+<script src="../app.js"></script>
+
+<!-- Orders -->
+<script src="orderCtrl.js"></script>
+<script src="orderService.js"></script>
+
+</head>
+<body ng-app="App">
+
+<div ng-controller="OrderCtrl">
+    <h1>OrderManager</h1>
+    <table>
+        <tr>
+            <td>Topic:</td>
+            <td>{{topic}}</td>
+        </tr>
+        <tr>
+            <td>Connected:</td>
+            <td>{{connected}}</td>
+        </tr>
+    </table>
+    <br/>
+    <div>
+        Enter a channel: <input type="text" ng-disabled="connected" ng-model="topicField" value=""/><br/>
+        <input type="button" ng-disabled="topicField.length < 1 || connected" ng-click="connect(topicField)" value="Connect!"/>
+    </div>
+    <div style="width: 50%; float: left;">
+        <h3>Event Log</h3>
+        <ul>
+            <li ng-repeat="event in eventLog track by $index">{{event}}</li>
+        </ul>
+    </div>
+    <div style="width: 50%; float: right;">
+        <h3>Orders</h3>
+        <ul>
+            <li ng-repeat="order in orders track by $index">Order #{{order.id}}: {{order.status}}</li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

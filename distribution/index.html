@@ -1,0 +1,48 @@
+<html>
+<head>
+
+<!-- AngularJS -->
+<script src="../bower_components/angular/angular.min.js"></script>
+
+<!-- AutobahnJS -->
+<script src="../bower_components/autobahn/autobahn.js"></script>
+
+<!-- AngularWAMP -->
+<script src="../bower_components/angular-wamp/release/angular-wamp.js"></script>
+
+<!-- App -->
+<script src="../app.js"></script>
+
+<!-- Orders -->
+<script src="distributionCtrl.js"></script>
+
+</head>
+<body ng-app="App">
+
+<div ng-controller="DistributionCtrl">
+    <h1>Distribution manager</h1>
+    <table>
+        <tr>
+            <td>Topic:</td>
+            <td>{{topic}}</td>
+        </tr>
+        <tr>
+            <td>Connected:</td>
+            <td>{{connected}}</td>
+        </tr>
+    </table>
+    <br/>
+    <div>
+        Enter a channel: <input type="text" ng-disabled="connected" ng-model="topicField" value=""/><br/>
+        <input type="button" ng-disabled="topicField.length < 1 || connected" ng-click="connect(topicField)" value="Connect!"/>
+    </div>
+    <div>
+        <h3>Orders in transit:</h3>
+    Shipping happens every 5 upto 10 seconds, one order at a time!<br/>
+    <ul>
+        <li ng-repeat="order in ordersForShipping">Order ID: {{order.id}}</li>
+    </ul>
+</div>
+
+</body>
+</html>

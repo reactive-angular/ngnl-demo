@@ -1,0 +1,62 @@
+<html>
+<head>
+
+<!-- AngularJS -->
+<script src="../bower_components/angular/angular.min.js"></script>
+
+<!-- AutobahnJS -->
+<script src="../bower_components/autobahn/autobahn.js"></script>
+
+<!-- AngularWAMP -->
+<script src="../bower_components/angular-wamp/release/angular-wamp.js"></script>
+
+<!-- App -->
+<script src="../app.js"></script>
+
+<!-- Orders -->
+<script src="taskApiCtrl.js"></script>
+
+</head>
+<body ng-app="App">
+
+<div ng-controller="TaskApiCtrl">
+    <h1>TASK API</h1>
+    <table>
+        <tr>
+            <td>Topic:</td>
+            <td>{{topic}}</td>
+        </tr>
+        <tr>
+            <td>Connected:</td>
+            <td>{{connected}}</td>
+        </tr>
+    </table>
+    <br/>
+    <div>
+        Enter a channel: <input type="text" ng-disabled="connected" ng-model="topicField" value=""/><br/>
+        <input type="button" ng-disabled="topicField.length < 1 || connected" ng-click="connect(topicField)" value="Connect!"/>
+    </div>
+    <div>
+        <h3>Tasks to send:</h3>
+        <h2>Place order:</h2>
+        <table>
+            <tr>
+                <td>Lollys:</td>
+                <td><input type="number" ng-model="lollys" min="0" max="5" value="1"/></td>
+            </tr>
+            <tr>
+                <td>Candybars:</td>
+                <td><input type="number" ng-model="candybars" min="0" max="5" value="1"/></td>
+            </tr>
+            <tr>
+                <td>Gumballs:</td>
+                <td><input type="number" ng-model="gumballs" min="0" max="5" value="1"/></td>
+            </tr>
+        </table>
+        <input type="button" ng-disabled="connected == false" ng-click="sendOrder()" value="Send order!"/>
+        <h2>Send restock:</h2>
+        <input type="button" ng-disabled="connected == false" ng-click="sendRestock()" value="Send restock shipment!"/>
+</div>
+
+</body>
+</html>
